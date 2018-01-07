@@ -29,12 +29,24 @@ thread_local! {
     };
 }
 
+/// The default queue for executing I/O intensive tasks.
+///
+/// This queue is built by the expression `TaskQueueBuilder::new().queue_name("fibers_default_io").finish()` at the program startup time.
+///
+/// Usually it is preferred to use libraries specialized for asynchronous I/O instead of this.
+/// But this may be useful, for example, for executing existing synchronous functions (e.g., [`read_dir`]) as asynchronously in a [fibers] context.
+///
+/// [`read_dir`]: https://doc.rust-lang.org/std/fs/fn.read_dir.html
+/// [fibers]: https://crates.io/crates/fibers
 #[derive(Debug, Clone, Copy)]
 pub struct DefaultIoTaskQueue;
 impl DefaultIoTaskQueue {
+    /// Returns the task queue.
     pub fn get(&self) -> TaskQueue {
         self.with(|queue| queue.clone())
     }
+
+    /// Passes the reference to the task queue to the given function and executes it.
     pub fn with<F, T>(&self, f: F) -> T
     where
         F: FnOnce(&TaskQueue) -> T,
@@ -52,12 +64,22 @@ impl TaskQueueExt for DefaultIoTaskQueue {
     }
 }
 
+/// The default queue for executing CPU intensive tasks.
+///
+/// This queue is built by the expression `TaskQueueBuilder::new().queue_name("fibers_default_cpu").finish()` at the program startup time.
+///
+/// This is useful for executing heavy CPU intensive tasks (e.g., large data compression) without blocking main scheduler threads of [fibers].
+///
+/// [fibers]: https://crates.io/crates/fibers
 #[derive(Debug, Clone, Copy)]
 pub struct DefaultCpuTaskQueue;
 impl DefaultCpuTaskQueue {
+    /// Returns the task queue.
     pub fn get(&self) -> TaskQueue {
         self.with(|queue| queue.clone())
     }
+
+    /// Passes the reference to the task queue to the given function and executes it.
     pub fn with<F, T>(&self, f: F) -> T
     where
         F: FnOnce(&TaskQueue) -> T,

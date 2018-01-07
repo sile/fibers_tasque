@@ -4,7 +4,13 @@ use fibers::sync::oneshot;
 use futures::{Future, Poll};
 use tasque::TaskQueue;
 
+/// [`TaskQueue`] extention.
+///
+/// [`TaskQueue`]: https://docs.rs/tasque/0.1/tasque/struct.TaskQueue.html
 pub trait TaskQueueExt {
+    /// Executes the given function asynchronously.
+    ///
+    /// The function `f` will be executed by a worker thread managed by this task queue.
     fn async_call<F, T>(&self, f: F) -> AsyncCall<T>
     where
         F: FnOnce() -> T + Send + 'static,
@@ -24,6 +30,11 @@ impl TaskQueueExt for TaskQueue {
     }
 }
 
+/// A [`Future`] that represents an asynchronous function call.
+///
+/// This is created by calling `TaskQueueExt::async_call` function.
+///
+/// [`Future`]: https://docs.rs/futures/0.1/futures/future/trait.Future.html
 #[derive(Debug)]
 pub struct AsyncCall<T>(oneshot::Receiver<T>);
 impl<T> Future for AsyncCall<T> {
@@ -34,6 +45,9 @@ impl<T> Future for AsyncCall<T> {
     }
 }
 
+/// An [`Error`] used if the worker thread that executing a asynchronous function aborted.
+///
+/// [`Error`]: https://doc.rust-lang.org/std/error/trait.Error.html
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub struct AsyncCallError;
 impl fmt::Display for AsyncCallError {
