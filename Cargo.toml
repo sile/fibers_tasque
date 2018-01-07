@@ -2,6 +2,15 @@
 name = "fibers_tasque"
 version = "0.1.0"
 authors = ["Takeru Ohta <phjgt308@gmail.com>"]
+description = "A `tasque` extention specialized for `fibers`"
+homepage = "https://github.com/sile/fibers_tasque"
+repository = "https://github.com/sile/fibers_tasque"
+readme = "README.md"
+license = "MIT"
+
+[badges]
+travis-ci = {repository = "sile/fibers_tasque"}
+codecov = {repository = "sile/fibers_tasque"}
 
 [dependencies]
 fibers = "0.1"
