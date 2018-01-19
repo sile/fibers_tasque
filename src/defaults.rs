@@ -5,13 +5,13 @@ use {AsyncCall, TaskQueueExt};
 
 lazy_static! {
     static ref DEFAULT_IO_TASK_QUEUE_GLOBAL: Mutex<TaskQueue> = {
-        let queue = TaskQueueBuilder::new().queue_name("fibers_default_io").finish();
+        let queue = TaskQueueBuilder::new().metrics(|m| { m.label("name", "fibers_default_io"); }).finish();
         Mutex::new(queue)
     };
 }
 lazy_static! {
     static ref DEFAULT_CPU_TASK_QUEUE_GLOBAL: Mutex<TaskQueue> = {
-        let queue = TaskQueueBuilder::new().queue_name("fibers_default_cpu").finish();
+        let queue = TaskQueueBuilder::new().metrics(|m| { m.label("name", "fibers_default_cpu"); }).finish();
         Mutex::new(queue)
     };
 }
