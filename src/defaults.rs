@@ -1,7 +1,7 @@
+use crate::{AsyncCall, TaskQueueExt};
+use lazy_static::lazy_static;
 use std::sync::Mutex;
 use tasque::{TaskQueue, TaskQueueBuilder};
-
-use {AsyncCall, TaskQueueExt};
 
 lazy_static! {
     static ref DEFAULT_IO_TASK_QUEUE_GLOBAL: Mutex<TaskQueue> = {

@@ -7,6 +7,7 @@ homepage = "https://github.com/sile/fibers_tasque"
 repository = "https://github.com/sile/fibers_tasque"
 readme = "README.md"
 license = "MIT"
+edition = "2018"
 
 [badges]
 travis-ci = {repository = "sile/fibers_tasque"}
