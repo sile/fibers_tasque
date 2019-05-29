@@ -4,7 +4,7 @@ use fibers::sync::oneshot;
 use futures::{Future, Poll};
 use tasque::TaskQueue;
 
-/// [`TaskQueue`] extention.
+/// [`TaskQueue`] extension.
 ///
 /// [`TaskQueue`]: https://docs.rs/tasque/0.1/tasque/struct.TaskQueue.html
 pub trait TaskQueueExt {
