@@ -50,12 +50,12 @@ thread_local! {
 pub struct DefaultIoTaskQueue;
 impl DefaultIoTaskQueue {
     /// Returns the task queue.
-    pub fn get(&self) -> TaskQueue {
+    pub fn get(self) -> TaskQueue {
         self.with(|queue| queue.clone())
     }
 
     /// Passes the reference to the task queue to the given function and executes it.
-    pub fn with<F, T>(&self, f: F) -> T
+    pub fn with<F, T>(self, f: F) -> T
     where
         F: FnOnce(&TaskQueue) -> T,
     {
@@ -83,12 +83,12 @@ impl TaskQueueExt for DefaultIoTaskQueue {
 pub struct DefaultCpuTaskQueue;
 impl DefaultCpuTaskQueue {
     /// Returns the task queue.
-    pub fn get(&self) -> TaskQueue {
+    pub fn get(self) -> TaskQueue {
         self.with(|queue| queue.clone())
     }
 
     /// Passes the reference to the task queue to the given function and executes it.
-    pub fn with<F, T>(&self, f: F) -> T
+    pub fn with<F, T>(self, f: F) -> T
     where
         F: FnOnce(&TaskQueue) -> T,
     {
