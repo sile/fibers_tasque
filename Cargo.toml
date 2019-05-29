@@ -1,6 +1,6 @@
 [package]
 name = "fibers_tasque"
-version = "0.1.1"
+version = "0.1.2"
 authors = ["Takeru Ohta <phjgt308@gmail.com>"]
 description = "A `tasque` extension specialized for `fibers`"
 homepage = "https://github.com/sile/fibers_tasque"
