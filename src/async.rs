@@ -1,7 +1,7 @@
-use std::fmt;
-use std::error::Error;
 use fibers::sync::oneshot;
 use futures::{Future, Poll};
+use std::error::Error;
+use std::fmt;
 use tasque::TaskQueue;
 
 /// [`TaskQueue`] extension.

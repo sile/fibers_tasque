@@ -38,8 +38,8 @@ mod defaults;
 
 #[cfg(test)]
 mod test {
-    use fibers::{Executor, InPlaceExecutor};
     use super::*;
+    use fibers::{Executor, InPlaceExecutor};
 
     #[test]
     fn it_works() {
