@@ -7,7 +7,7 @@ fibers_tasque
 [![Code Coverage](https://codecov.io/gh/sile/fibers_tasque/branch/master/graph/badge.svg)](https://codecov.io/gh/sile/fibers_tasque/branch/master)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
-A [tasque] extention specialized for [fibers].
+A [tasque] extension specialized for [fibers].
 
 [Documentation](https://docs.rs/fibers_tasque).
 

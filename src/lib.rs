@@ -1,4 +1,4 @@
-//! A [tasque] extention specialized for [fibers].
+//! A [tasque] extension specialized for [fibers].
 //!
 //! This provides an extension trait and the default task queues.
 //!
